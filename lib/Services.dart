@@ -6,7 +6,11 @@ class Services extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("Our Services",
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
+      ),
       body: Container(
         
         child:        GridView.builder(

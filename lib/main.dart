@@ -4,6 +4,11 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:homeowner_hub/nav_root.dart';
 
+import 'api/api.dart';
+
+
+// import 'package:readmore/readmore.dart';
+
 
 final List<String> titles = <String>['Ttile 1', 'Title 2', 'Titlte 3'];
 final List<String> news =  <String>['Article 1', 'Article 2', 'Article 3'];
@@ -38,6 +43,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -79,7 +85,26 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+  List<String> title = [];
+  List<String> descriptions = [];
+  dynamic data ;
 
+
+  void callApi() async {
+    // print(data[0].values.toList());
+   data = await APICall.get('/news/get_news');
+
+    setState(() {});
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    callApi();
+  }
+
+  
   @override
   Widget build(BuildContext context) {
 
@@ -120,10 +145,11 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
               ),
-              child: Image.network(
-                'https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTR8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',
-                fit: BoxFit.cover,
-              ),
+              child: Image.asset
+            (
+              "assets/Malazz.png"
+              // fit: BoxFit.cover,
+            ),
             ),
           ),
         ],
@@ -409,6 +435,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       )),
                 ),
               ),
+              if (data!=Null)
 
               ListView.builder(
                 itemCount: titles.length,
@@ -456,24 +483,28 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('${titles[index]}',
+    // print(data[index]["title"]);
+
+
+
+                                Text('${data[index]["title"]}',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 18,
+                                      fontSize: 16,
                                     )),
-                                Container(
-                                  padding:
-                                      EdgeInsetsDirectional.fromSTEB(
-                                          4, 4, 8, 4),
-                                  child: Text('${news[index]}',
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 12,
-                                      )),
-                                ),
+                                // Container(
+                                //   padding:
+                                //       EdgeInsetsDirectional.fromSTEB(
+                                //           4, 4, 8, 4),
+                                //   child: Text('${data[index]["description"]}',
+                                //       textAlign: TextAlign.start,
+                                //       style: TextStyle(
+                                //         color: Colors.black,
+                                //         fontWeight: FontWeight.normal,
+                                //         fontSize: 12,
+                                //       )),
+                                // ),
                               ],
                             ),
                           ),

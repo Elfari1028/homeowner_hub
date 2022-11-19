@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:homeowner_hub/Profile.dart';
 import 'package:homeowner_hub/energy_main.dart';
 import 'package:homeowner_hub/HomeWidget.dart';
 import 'package:homeowner_hub/Services.dart';
 import 'package:homeowner_hub/main.dart';
 import 'package:homeowner_hub/Services.dart';
+import 'package:homeowner_hub/Solar.dart';
+
+
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 
@@ -71,6 +75,7 @@ class NavRootPage extends StatelessWidget {
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
+
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.settings),
         title: "Profile",
@@ -88,9 +93,8 @@ class NavRootPage extends StatelessWidget {
       ),
       EnergyMainPage(),
       Services(),
-      MyHomePage(
-        title: 'forth',
-      ),
+      // Profile(),
+      Solar(),
     ];
   }
 }
