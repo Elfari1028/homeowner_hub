@@ -1,54 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:homeowner_hub/main.dart';
 
-class Solar extends StatelessWidget {
+class SolarFormPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: AppBar(
         title: Text("Soolar Panels",
-          style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18)),
       ),
-
-
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-      
-              
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(8),
-              child: Image.asset("assets/panel.png")
-              // child: 
-      
-            ),
-      
+                padding: EdgeInsets.all(8),
+                child: Image.asset("assets/panel.png")
+                // child:
+
+                ),
             Container(
-              margin: EdgeInsets.only(left:15, right:15),
-      // The current energy crisis have led to increase in prices for gas, electrcity, transportation and food. Electricity prices in Germany have  increased by 26 percent.
-      
-              child: 
-              Text('''
+              margin: EdgeInsets.only(left: 15, right: 15),
+              // The current energy crisis have led to increase in prices for gas, electrcity, transportation and food. Electricity prices in Germany have  increased by 26 percent.
+
+              child: Text(
+                '''
               
 Did you know that having solar panels could reduce your monthly energy bills by 40-70%? 
       
 We will provide our costumer with a loan to have solar panels in their houses and save money.
 Are you interested in more details? Please fill the form below and we will contact you!''',
-              style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
-                                      textAlign: TextAlign.start,
-                                    
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+                textAlign: TextAlign.start,
               ),
             ),
-      
-      
-      Container(
+            Container(
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
               child: TextField(
                 decoration: InputDecoration(
@@ -58,8 +51,6 @@ Are you interested in more details? Please fill the form below and we will conta
                 ),
               ),
             ),
-      
-      
             Container(
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
               child: TextField(
@@ -70,7 +61,6 @@ Are you interested in more details? Please fill the form below and we will conta
                 ),
               ),
             ),
-
             Container(
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
               child: TextField(
@@ -81,7 +71,6 @@ Are you interested in more details? Please fill the form below and we will conta
                 ),
               ),
             ),
-
             Container(
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
               child: TextField(
@@ -92,7 +81,6 @@ Are you interested in more details? Please fill the form below and we will conta
                 ),
               ),
             ),
-
             Container(
               margin: EdgeInsets.all(16),
               height: MediaQuery.of(context).size.height * 0.08,
@@ -112,9 +100,7 @@ Are you interested in more details? Please fill the form below and we will conta
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(20)),
                   child: ElevatedButton(
-                    onPressed: ()  {
-                      
-                    },
+                    onPressed: () {},
                     child: Text(
                       'Submit',
                       style: TextStyle(
@@ -126,14 +112,9 @@ Are you interested in more details? Please fill the form below and we will conta
                 ),
               ),
             ),
-
-            
-
-      
-      
           ],
         ),
       ),
-      );
+    );
   }
 }

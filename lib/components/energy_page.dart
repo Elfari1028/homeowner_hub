@@ -3,9 +3,10 @@ import 'dart:ui';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:homeowner_hub/energy/add_usage.dart';
-import 'package:homeowner_hub/energy/usage_chart.dart';
+import 'package:homeowner_hub/components/energy/add_usage.dart';
+import 'package:homeowner_hub/components/energy/usage_chart.dart';
 import 'package:homeowner_hub/store/store.dart';
+import 'package:homeowner_hub/utils/usage_cal.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
 
 class EnergyMainPage extends StatefulWidget {
@@ -19,37 +20,12 @@ class EnergyMainPageState extends State<EnergyMainPage> {
   @override
   void initState() {
     super.initState();
-    initData();
+    updateData();
   }
 
-  void initData() {
-    List list = Store.readUsage();
-    dataSpots = List.generate(14, (index) {
-      String curr = DateTime.now()
-          .subtract(Duration(days: index))
-          .toString()
-          .substring(0, 10);
-      double sum = 0;
-      List temp = list.where((element) => element["D"] == curr).toList();
-      temp.forEach((element) {
-        print(element);
-        sum += element["E"];
-      });
-      return FlSpot(14.0 - index, sum);
-    });
-    moneySpots = List.generate(14, (index) {
-      String curr = DateTime.now()
-          .subtract(Duration(days: index))
-          .toString()
-          .substring(0, 10);
-      double sum = 0;
-      List temp = list.where((element) => element["D"] == curr).toList();
-      temp.forEach((element) {
-        print(element);
-        sum += element["E"] * element["P"];
-      });
-      return FlSpot(14.0 - index, sum);
-    });
+  void updateData() {
+    dataSpots = EnergyUsageUtil.usageGraphData;
+    moneySpots = EnergyUsageUtil.costGraphData;
   }
 
   @override
@@ -233,16 +209,11 @@ class EnergyMainPageState extends State<EnergyMainPage> {
         ),
       ));
   Widget get fabv => SpeedDial(
-        child: Icon(Icons.add),
         closedForegroundColor: Colors.black,
         openForegroundColor: Colors.white,
         closedBackgroundColor: Colors.white,
         openBackgroundColor: Colors.black,
-        // labelsStyle: /* Your label TextStyle goes here */
         labelsBackgroundColor: Colors.white,
-        // controller: /* Your custom animation controller goes here */,
-        // controller: AnimationController(
-        //     duration: Duration(milliseconds: 50), vsync: this),
         speedDialChildren: <SpeedDialChild>[
           SpeedDialChild(
             child: Icon(Icons.add),
@@ -251,9 +222,8 @@ class EnergyMainPageState extends State<EnergyMainPage> {
             label: 'Add Electricity Usage',
             onPressed: () async {
               await Get.to(() => const AddUsagePage());
-              setState(() {
-                initData();
-              });
+              updateData();
+              if (mounted) setState(() {});
             },
             closeSpeedDialOnPressed: false,
           ),
@@ -264,8 +234,8 @@ class EnergyMainPageState extends State<EnergyMainPage> {
             label: 'Smart Plug-O-Meter™️',
             onPressed: () {},
           ),
-          //  Your other SpeedDialChildren go here.
         ],
+        child: const Icon(Icons.add),
       );
 
   Widget get header => Container(
@@ -289,7 +259,7 @@ class EnergyMainPageState extends State<EnergyMainPage> {
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
+              children: const [
                 Padding(
                   padding: EdgeInsets.only(top: 10),
                   child: Text(
@@ -313,10 +283,10 @@ class EnergyMainPageState extends State<EnergyMainPage> {
               ],
             ),
             Container(
-                // padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // ignore: prefer_const_constructors
                 Text(
                   "\$ 12 per day",
                   style: TextStyle(color: Colors.white),

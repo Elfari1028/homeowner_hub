@@ -23,11 +23,9 @@ class Store {
 
   static readUsage() {
     dynamic data = read("usage-data");
-    print("data:$data");
     if (data is List) {
       return data;
     } else {
-      print("empty");
       put("usage-data", []);
       return [];
     }
