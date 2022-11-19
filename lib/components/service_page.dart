@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:homeowner_hub/const/const.dart';
 import 'package:homeowner_hub/main.dart';
 
@@ -26,7 +27,7 @@ class Services extends StatelessWidget {
               //   gridHandler(index);
               // },
               child: Container(
-                // height: MediaQuery.of(context).size.height*0.2,
+                // height: Get.height*0.2,
                 padding: const EdgeInsets.all(0.0),
                 child: Card(
                   margin: index != 909
@@ -48,7 +49,7 @@ class Services extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          height: (MediaQuery.of(context).size.height) * 0.16,
+                          height: (Get.height) * 0.16,
                           // padding: EdgeInsets.only(top: 0),
                           child: Container(
                               // margin: 0,
@@ -57,7 +58,7 @@ class Services extends StatelessWidget {
                               child: Image.asset(
                             categoriesListIcons[index],
                             // fit: BoxFit.contain,
-                            // height: MediaQuery.of(context).size.height * 0.1,
+                            // height: Get.height * 0.1,
                             // width: MediaQuery.of(context).size.width * 0.4,
                           )
                               // ),

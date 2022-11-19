@@ -47,7 +47,7 @@
 //             new Stack(children: <Widget>[
 //               Container(
 //                 width: MediaQuery.of(context).size.width,
-//                 height: MediaQuery.of(context).size.height * 0.2,
+//                 height: Get.height * 0.2,
 //                 decoration: BoxDecoration(
 //                   image: DecorationImage(
 //                     image: AssetImage("assets/images/back.png"),
@@ -61,7 +61,7 @@
 //                 children: <Widget>[
 //                   Padding(
 //                    padding:  EdgeInsets.only(
-//                      top: MediaQuery.of(context).size.height * 0.1,
+//                      top: Get.height * 0.1,
 //                         bottom: 11,
 //                         left: MediaQuery.of(context).size.width * 0.07,
 //                         right: MediaQuery.of(context).size.width * 0.07
@@ -80,10 +80,10 @@
 //               ),
 //                       Padding(
 //                         padding: EdgeInsets.only(
-//                             top: MediaQuery.of(context).size.height * 0.2,
+//                             top: Get.height * 0.2,
 //                         // left: MediaQuery.of(context).size.width * 0.02,
 //                         right: MediaQuery.of(context).size.width * 0.04,
-//                         bottom: MediaQuery.of(context).size.height * 0.02),
+//                         bottom: Get.height * 0.02),
 //                         child: Row(
 //                           children: <Widget>[
 //                             // Text(
@@ -922,6 +922,6 @@
 
 //   getadaptiveTextSize(BuildContext context, dynamic value) {
 //     // 720 is medium screen height
-//     return (value / 720) * MediaQuery.of(context).size.height;
+//     return (value / 720) * Get.height;
 //   }
 // }

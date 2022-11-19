@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                     //   gridHandler(index);
                     // },
                     child: Container(
-                      // height: MediaQuery.of(context).size.height*0.2,
+                      // height: Get.height*0.2,
                       padding: const EdgeInsets.all(0.0),
                       child: Card(
                         margin: index == 0 || index == 3
@@ -132,12 +132,6 @@ class _HomePageState extends State<HomePage> {
                                   )
                                 : EdgeInsets.only(
                                     bottom: 12, left: 7, right: 7),
-
-                        // ? const EdgeInsets.only(top: 10.0, left: 4, right: 4, bottom: 4)
-                        // : const EdgeInsets.all(4.0),
-
-                        // elevation: 18,
-                        // padding: EdgeInsets.all(0)
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -148,18 +142,10 @@ class _HomePageState extends State<HomePage> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Container(
-                                height:
-                                    (MediaQuery.of(context).size.height) * 0.1,
-                                // padding: EdgeInsets.only(top: 0),
+                                height: (Get.height) * 0.1,
                                 child: Container(
-                                    // margin: 0,
-                                    // child: ClipRRect(
-                                    // borderRadius: BorderRadius.circular(0.0),
                                     child: Image.asset(
                                   categoriesListIcons[index],
-                                  // fit: BoxFit.contain,
-                                  // height: MediaQuery.of(context).size.height * 0.1,
-                                  // width: MediaQuery.of(context).size.width * 0.4,
                                 )
                                     // ),
                                     ),
@@ -215,15 +201,11 @@ class _HomePageState extends State<HomePage> {
                               CircularProgressIndicator(color: Colors.black)))
                   : ListView.builder(
                       itemCount: data.length,
-                      // padding: EdgeInsets.all(8),
                       primary: false,
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemBuilder: (BuildContext context, int index) {
-                        return
-                            // Column(
-                            // children: [
-                            Container(
+                        return Container(
                           padding: index != data.length - 1
                               ? EdgeInsetsDirectional.fromSTEB(18, 4, 18, 4)
                               : EdgeInsetsDirectional.fromSTEB(18, 4, 18, 18),
@@ -265,48 +247,14 @@ class _HomePageState extends State<HomePage> {
                                             fontWeight: FontWeight.bold,
                                             fontSize: 16,
                                           )),
-                                      // Container(
-                                      //   padding:
-                                      //       EdgeInsetsDirectional.fromSTEB(
-                                      //           4, 4, 8, 4),
-                                      //   child: Text('${data[index]["description"]}',
-                                      //       textAlign: TextAlign.start,
-                                      //       style: TextStyle(
-                                      //         color: Colors.black,
-                                      //         fontWeight: FontWeight.normal,
-                                      //         fontSize: 12,
-                                      //       )),
-                                      // ),
                                     ],
                                   ),
                                 ),
                               ),
-                              // Column(
-                              //   mainAxisSize: MainAxisSize.max,
-                              //   mainAxisAlignment:
-                              //       MainAxisAlignment.spaceBetween,
-                              //   crossAxisAlignment: CrossAxisAlignment.end,
-                              //   children: [
-                              //     Padding(
-                              //       padding: EdgeInsetsDirectional.fromSTEB(
-                              //           0, 4, 0, 0),
-                              //       child: Icon(
-                              //         Icons.chevron_right_rounded,
-                              //         color: Color(0xFF57636C),
-                              //         size: 24,
-                              //       ),
-                              //     ),
-                              //   ],
-                              // ),
-                              // ],
-                              // ),
                             ),
                           ),
                         );
-                        // ],
-                        // );
                       },
-                      // separatorBuilder: (BuildContext context, int index) => const Divider(),
                     ),
             ],
           ),
@@ -336,14 +284,14 @@ class _HomePageState extends State<HomePage> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Below are your daily energy cost.',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.normal,
                       fontSize: 20),
                 ),
-                Divider(
+                const Divider(
                   height: 24,
                   thickness: 2,
                   color: Color(0xFFF1F4F8),
@@ -396,7 +344,7 @@ class _HomePageState extends State<HomePage> {
                               Container(
                                 padding: EdgeInsets.all(8),
                                 child: Text(
-                                  "${EnergyUsageUtil.avgCostPerDay}",
+                                  "${EnergyUsageUtil.avgCostPerDay.toString().substring(0, 3)}",
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.normal,
