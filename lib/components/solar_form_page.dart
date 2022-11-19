@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homeowner_hub/main.dart';
 
-class Solar extends StatelessWidget {
+class SolarFormPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

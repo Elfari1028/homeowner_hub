@@ -1,26 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:homeowner_hub/Profile.dart';
-import 'package:homeowner_hub/energy_main.dart';
-import 'package:homeowner_hub/HomeWidget.dart';
-import 'package:homeowner_hub/Services.dart';
+import 'package:homeowner_hub/components/energy_page.dart';
+import 'package:homeowner_hub/components/home_page.dart';
+import 'package:homeowner_hub/components/service_page.dart';
 import 'package:homeowner_hub/main.dart';
-import 'package:homeowner_hub/Services.dart';
-import 'package:homeowner_hub/Solar.dart';
-import 'package:homeowner_hub/onboarding.dart';
-
-
-
-
-
-
+import 'package:homeowner_hub/components/solar_form_page.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-
-
-
-
-
 
 class NavRootPage extends StatelessWidget {
   @override
@@ -80,7 +66,6 @@ class NavRootPage extends StatelessWidget {
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
-
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.settings),
         title: "Profile",
@@ -93,14 +78,13 @@ class NavRootPage extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       // HomeWidget(),
-      MyHomePage(
+      HomePage(
         title: 'first',
       ),
       EnergyMainPage(),
       Services(),
       // Profile(),
-      // Solar(),
-      onboarding(),
+      SolarFormPage(),
     ];
   }
 }
