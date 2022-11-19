@@ -1,22 +1,50 @@
 import 'dart:ui';
 
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:homeowner_hub/energy/add_usage.dart';
+import 'package:homeowner_hub/energy/usage_chart.dart';
+import 'package:homeowner_hub/store/store.dart';
+import 'package:simple_speed_dial/simple_speed_dial.dart';
 
 class EnergyMainPage extends StatefulWidget {
   createState() => EnergyMainPageState();
 }
 
-class EnergyMainPageState extends State<EnergyMainPage> {
+class EnergyMainPageState extends State<EnergyMainPage>
+    with TickerProviderStateMixin {
+  Color mainColor = Color(0xFF5b4ee9);
+  List<FlSpot> dataSpots = [];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    initData();
+  }
+
+  void initData() {
+    List list = Store.readUsage();
+    dataSpots = List.generate(14, (index) {
+      String curr = DateTime.now()
+          .subtract(Duration(days: index))
+          .toString()
+          .substring(0, 10);
+      double sum = 0;
+      List temp = list.where((element) => element["D"] == curr).toList();
+      temp.forEach((element) {
+        print(element);
+        sum += element["E"];
+      });
+
+      // Get.snackbar("$sum", "hehe");
+      return FlSpot(14.0 - index, sum);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: fabv,
         appBar: AppBar(
           backgroundColor: Color(0xFF5b4ee9),
           centerTitle: false,
@@ -28,14 +56,51 @@ class EnergyMainPageState extends State<EnergyMainPage> {
             Container(
               width: Get.width,
               // height: Get.height - 140 - 50 - 50 - 50,
+              padding: EdgeInsets.all(10),
               child: ListView(
                 shrinkWrap: true,
-                children: [],
+                children: [LineChartUsage(spots: dataSpots)],
               ),
             ),
           ],
         ));
   }
+
+  Widget get fabv => SpeedDial(
+        child: Icon(Icons.add),
+        closedForegroundColor: Colors.black,
+        openForegroundColor: Colors.white,
+        closedBackgroundColor: Colors.white,
+        openBackgroundColor: Colors.black,
+        // labelsStyle: /* Your label TextStyle goes here */
+        labelsBackgroundColor: Colors.white,
+        // controller: /* Your custom animation controller goes here */,
+        controller: AnimationController(
+            duration: Duration(milliseconds: 50), vsync: this),
+        speedDialChildren: <SpeedDialChild>[
+          SpeedDialChild(
+            child: Icon(Icons.add),
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.red,
+            label: 'Add Electricity Usage',
+            onPressed: () async {
+              await Get.to(() => const AddUsagePage());
+              setState(() {
+                initData();
+              });
+            },
+            closeSpeedDialOnPressed: false,
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.device_hub),
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.yellow,
+            label: 'Smart Plug-O-Meter™️',
+            onPressed: () {},
+          ),
+          //  Your other SpeedDialChildren go here.
+        ],
+      );
 
   Widget get header => Container(
         height: 140,
