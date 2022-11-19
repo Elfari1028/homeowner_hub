@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:homeowner_hub/Solar.dart';
 import 'package:homeowner_hub/energy/add_usage.dart';
 import 'package:homeowner_hub/energy/usage_chart.dart';
 import 'package:homeowner_hub/store/store.dart';
@@ -148,7 +149,9 @@ class EnergyMainPageState extends State<EnergyMainPage> {
                     OutlinedButton(
                         style: ButtonStyle(
                             side: MaterialStateProperty.all(BorderSide.none)),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => Solar());
+                        },
                         child: Row(
                           children: [
                             Text(
