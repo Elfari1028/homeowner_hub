@@ -1,8 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:homeowner_hub/HomeWidget.dart';
 import 'package:homeowner_hub/main.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+
+
+
+
+
 
 class NavRootPage extends StatelessWidget {
   @override
@@ -73,6 +79,7 @@ class NavRootPage extends StatelessWidget {
 
   List<Widget> _buildScreens() {
     return [
+      // HomeWidget(),
       MyHomePage(
         title: 'first',
       ),
