@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:homeowner_hub/components/nav_root.dart';
+import 'package:homeowner_hub/components/onboarding_page.dart';
 
 void main() async {
   await GetStorage.init();
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.lexendDecaTextTheme(),
         primaryTextTheme: GoogleFonts.lexendDecaTextTheme(),
       ),
-      home: NavRootPage(),
+      home: OnboardingPage(),
     );
   }
 }

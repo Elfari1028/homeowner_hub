@@ -5,9 +5,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:homeowner_hub/components/nav_root.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
-class onboarding extends StatelessWidget {
+class OnboardingPage extends StatelessWidget {
   List<PageViewModel> getPages() {
     return [
       PageViewModel(
@@ -92,7 +93,7 @@ class onboarding extends StatelessWidget {
           style: TextStyle(color: const Color(0xff121A19)),
         ),
         onDone: () {
-          // Get.to(Login());
+          Get.to(NavRootPage());
         },
       ),
     );
