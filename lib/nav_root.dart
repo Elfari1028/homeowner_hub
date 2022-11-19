@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:homeowner_hub/energy_main.dart';
 import 'package:homeowner_hub/main.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
@@ -73,11 +74,9 @@ class NavRootPage extends StatelessWidget {
 
   List<Widget> _buildScreens() {
     return [
+      EnergyMainPage(),
       MyHomePage(
         title: 'first',
-      ),
-      MyHomePage(
-        title: 'second',
       ),
       MyHomePage(
         title: 'thirs',
