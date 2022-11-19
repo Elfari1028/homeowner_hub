@@ -12,10 +12,10 @@ class EnergyMainPage extends StatefulWidget {
   createState() => EnergyMainPageState();
 }
 
-class EnergyMainPageState extends State<EnergyMainPage>
-    with TickerProviderStateMixin {
+class EnergyMainPageState extends State<EnergyMainPage> {
   Color mainColor = Color(0xFF5b4ee9);
   List<FlSpot> dataSpots = [];
+  List<FlSpot> moneySpots = [];
   @override
   void initState() {
     super.initState();
@@ -35,8 +35,19 @@ class EnergyMainPageState extends State<EnergyMainPage>
         print(element);
         sum += element["E"];
       });
-
-      // Get.snackbar("$sum", "hehe");
+      return FlSpot(14.0 - index, sum);
+    });
+    moneySpots = List.generate(14, (index) {
+      String curr = DateTime.now()
+          .subtract(Duration(days: index))
+          .toString()
+          .substring(0, 10);
+      double sum = 0;
+      List temp = list.where((element) => element["D"] == curr).toList();
+      temp.forEach((element) {
+        print(element);
+        sum += element["E"] * element["P"];
+      });
       return FlSpot(14.0 - index, sum);
     });
   }
@@ -50,22 +61,177 @@ class EnergyMainPageState extends State<EnergyMainPage>
           centerTitle: false,
           title: Text("Energy Tracker"),
         ),
-        body: Column(
+        body: ListView(
           children: [
             header,
             Container(
               width: Get.width,
-              // height: Get.height - 140 - 50 - 50 - 50,
-              padding: EdgeInsets.all(10),
+              height: Get.height - 140 - 50 - 50 - 50,
+              padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
               child: ListView(
                 shrinkWrap: true,
-                children: [LineChartUsage(spots: dataSpots)],
+                children: [
+                  ListTile(
+                    title: Text("Electricity Cost 14-Day Overview"),
+                  ),
+                  LineChartUsage(
+                    spots: moneySpots,
+                    unit: "€",
+                  ),
+                  ListTile(
+                    title: Text("Go Green, Go Clean, Go Cheap"),
+                  ),
+                  solarCard,
+                  ListTile(
+                    title: Text("Electricity Usage 14-Day Overview"),
+                  ),
+                  LineChartUsage(spots: dataSpots),
+                  ListTile(
+                    title: Text("Track your energy usage with ease"),
+                  ),
+                  plugCard,
+                  SizedBox(
+                    height: 100,
+                  )
+                ],
               ),
             ),
           ],
         ));
   }
 
+  Widget get solarCard => Padding(
+      padding: EdgeInsets.only(top: 10),
+      child: Container(
+        width: Get.width * 0.8,
+        padding: EdgeInsets.zero,
+        height: 150,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            gradient: const LinearGradient(
+                colors: [Color(0xFFf9d423), Color(0xFFff4e50)],
+                stops: [0.0, 1.0],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+                padding: EdgeInsets.only(left: 15, top: 10),
+                child: Text("Save upto 12€ per month*",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold))),
+            Padding(
+                padding: EdgeInsets.only(left: 15, top: 5),
+                child: Text("install Solar Panels with our loan payment plan",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal))),
+            Container(
+                padding: EdgeInsets.only(left: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(children: [
+                      ...List<Widget>.generate(
+                          3,
+                          (index) => Image.asset(
+                                "assets/solarpanel.png",
+                                width: 50,
+                                height: 60,
+                              )),
+                    ]),
+                    OutlinedButton(
+                        style: ButtonStyle(
+                            side: MaterialStateProperty.all(BorderSide.none)),
+                        onPressed: () {},
+                        child: Row(
+                          children: [
+                            Text(
+                              "Go green today",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Icon(
+                              Icons.navigate_next,
+                              color: Colors.white,
+                            )
+                          ],
+                        ))
+                  ],
+                ))
+          ],
+        ),
+      ));
+  Widget get plugCard => Padding(
+      padding: EdgeInsets.only(top: 10),
+      child: Container(
+        width: Get.width * 0.8,
+        padding: EdgeInsets.zero,
+        height: 150,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            gradient: const LinearGradient(
+                colors: [Color(0xFF84fab0), Color(0xFF8fd3f4)],
+                stops: [0.0, 1.0],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+                padding: EdgeInsets.only(left: 15, top: 10),
+                child: Text("Smart Plug-O-Meters",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold))),
+            Padding(
+                padding: EdgeInsets.only(left: 15, top: 5),
+                child: Text("Auto-Track and catergorize your energy usage",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal))),
+            Container(
+                padding: EdgeInsets.only(left: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(children: [
+                      ...List<Widget>.generate(
+                          1,
+                          (index) => Image.asset(
+                                "assets/plug.png",
+                                width: 70,
+                                height: 60,
+                              )),
+                    ]),
+                    OutlinedButton(
+                        style: ButtonStyle(
+                            side: MaterialStateProperty.all(BorderSide.none)),
+                        onPressed: () {},
+                        child: Row(
+                          children: [
+                            Text(
+                              "Go smart today",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            Icon(
+                              Icons.navigate_next,
+                              color: Colors.black,
+                            )
+                          ],
+                        ))
+                  ],
+                ))
+          ],
+        ),
+      ));
   Widget get fabv => SpeedDial(
         child: Icon(Icons.add),
         closedForegroundColor: Colors.black,
@@ -75,8 +241,8 @@ class EnergyMainPageState extends State<EnergyMainPage>
         // labelsStyle: /* Your label TextStyle goes here */
         labelsBackgroundColor: Colors.white,
         // controller: /* Your custom animation controller goes here */,
-        controller: AnimationController(
-            duration: Duration(milliseconds: 50), vsync: this),
+        // controller: AnimationController(
+        //     duration: Duration(milliseconds: 50), vsync: this),
         speedDialChildren: <SpeedDialChild>[
           SpeedDialChild(
             child: Icon(Icons.add),

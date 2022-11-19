@@ -5,7 +5,8 @@ import 'package:homeowner_hub/store/store.dart';
 
 class LineChartUsage extends StatefulWidget {
   List<FlSpot> spots;
-  LineChartUsage({super.key, required this.spots});
+  String unit;
+  LineChartUsage({super.key, required this.spots, this.unit = "kWh"});
 
   @override
   State<LineChartUsage> createState() => _LineChartUsageState();
@@ -111,7 +112,7 @@ class _LineChartUsageState extends State<LineChartUsage> {
       fontSize: 15,
     );
     String text;
-    text = "${value.toInt()}kWh";
+    text = "${value.toInt()}${widget.unit}";
 
     return Text(text, style: style, textAlign: TextAlign.left);
   }
