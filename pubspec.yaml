@@ -44,6 +44,7 @@ dependencies:
   introduction_screen: ^2.1.0
   new_gradient_app_bar: ^0.2.0
   flutter_inappwebview: ^5.7.1+2
+  url_launcher: ^6.1.6
 
 dev_dependencies:
   flutter_test:

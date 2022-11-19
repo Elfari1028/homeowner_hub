@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:homeowner_hub/api/api.dart';
+import 'package:homeowner_hub/components/solar_form_page.dart';
+
 import 'package:homeowner_hub/const/const.dart';
 import 'package:homeowner_hub/utils/usage_cal.dart';
+
+import 'package:url_launcher/url_launcher.dart';
+
+// "www.google.com"
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -51,6 +57,24 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     callApi();
+  }
+
+  _launchURL() async {
+    var url = Uri.parse("https://flutter.io");
+    if (await canLaunchUrl(url)) {
+      // ignore: deprecated_member_use
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  void gridHandler(index) {
+    if (categoriesList[index] == "Solar panels") {
+      Get.to(SolarFormPage());
+    } else if (categoriesList[index] == "Home decoration") {
+      _launchURL();
+    }
   }
 
   @override
@@ -115,9 +139,9 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) {
                   // Container(height: 20, child: Image.asset('assets/images/icons/doctor.png', fit: BoxFit.cover,)),
                   return GestureDetector(
-                    // onTap: () {
-                    //   gridHandler(index);
-                    // },
+                    onTap: () {
+                      gridHandler(index);
+                    },
                     child: Container(
                       // height: Get.height*0.2,
                       padding: const EdgeInsets.all(0.0),
