@@ -78,7 +78,6 @@ class EnergyMainPageState extends State<EnergyMainPage> {
         ));
   }
 
-
   Widget get fabv => SpeedDial(
         closedForegroundColor: Colors.black,
         openForegroundColor: Colors.white,
@@ -130,27 +129,27 @@ class EnergyMainPageState extends State<EnergyMainPage> {
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: const [
+              children: [
                 Padding(
                   padding: EdgeInsets.only(top: 10),
                   child: Text(
-                    "\€120",
+                    "\€ ${EnergyUsageUtil.getPastMonthCost.toStringAsFixed(2)}",
                     style: TextStyle(
                         fontSize: 36,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 10, bottom: 5),
-                  child: Text(
-                    "Per Month",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                )
+                // Padding(
+                //   padding: EdgeInsets.only(left: 10, bottom: 5),
+                //   child: Text(
+                //     "Per Month",
+                //     style: TextStyle(
+                //         fontSize: 16,
+                //         fontWeight: FontWeight.bold,
+                //         color: Colors.white),
+                //   ),
+                // )
               ],
             ),
             Container(
@@ -159,15 +158,15 @@ class EnergyMainPageState extends State<EnergyMainPage> {
               children: [
                 // ignore: prefer_const_constructors
                 Text(
-                  "\$ 12 per day",
+                  "avergaing \$ ${EnergyUsageUtil.avgCostPerDay.toStringAsFixed(2)} per day",
                   style: TextStyle(color: Colors.white),
                 ),
-                Row(
-                  children: [
-                    Text("You're below average use today",
-                        style: TextStyle(color: Colors.white)),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     Text("You're below average use today",
+                //         style: TextStyle(color: Colors.white)),
+                //   ],
+                // ),
               ],
             ))
           ],

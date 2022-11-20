@@ -66,4 +66,24 @@ class EnergyUsageUtil {
     }
     return set.length;
   }
+
+  static double get getPastMonthCost {
+    List list = Store.readUsage();
+    double total = 0;
+    List.generate(30, (index) {
+      String curr = DateTime.now()
+          .subtract(Duration(days: index))
+          .toString()
+          .substring(0, 10);
+      double sum = 0;
+      List temp = list.where((element) => element["D"] == curr).toList();
+      for (var element in temp) {
+        sum += element["E"] * element["P"];
+      }
+      total += sum;
+    });
+    return total;
+  }
+
+  static int moneySaved = 12;
 }
