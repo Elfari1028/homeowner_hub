@@ -19,7 +19,7 @@ class APICall {
     } on Error catch (e) {
       return Map.from({"success": false, "exc": e.toString()});
     } catch (object) {
-      return Map.from({"success": false, "exc": "未知错误"});
+      return Map.from({"success": false, "exc": "Unknown Error"});
     }
   }
 
@@ -34,7 +34,7 @@ class APICall {
     } on Error catch (e) {
       return Map.from({"success": false, "exc": e.toString()});
     } catch (object) {
-      return Map.from({"success": false, "exc": "未知错误"});
+      return Map.from({"success": false, "exc": "Unknown Error"});
     }
   }
 
