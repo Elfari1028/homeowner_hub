@@ -60,8 +60,34 @@ class _HomePageState extends State<HomePage> {
     callApi();
   }
 
-  _launchURL() async {
-    var url = Uri.parse("https://flutter.io");
+     void gridHandler(index) {
+    if (categoriesList[index] == "Solar panels") {
+      Get.to(SolarFormPage());
+    } else if (categoriesList[index] == "Home decoration") {
+      _launchURL_Home_decoration();
+    }
+
+    else if (categoriesList[index] == "Home repair") {
+      _launchURL_Home_repair();
+    }
+    
+     else if (categoriesList[index] == "Recycling") {
+      _launchURL_recycling();
+    }
+    
+ else if (categoriesList[index] == "Rent electric car") {
+      _launchURL_car();
+    }
+    
+ else if (categoriesList[index] == "Other services") {
+      _launchURL_other();
+    }
+    
+
+  }
+
+    _launchURL_Home_decoration() async {
+    var url = Uri.parse("https://www.blauer-engel.de/en/themenwelt/umweltfreundliches-buero");
     if (await canLaunchUrl(url)) {
       // ignore: deprecated_member_use
       await launchUrl(url);
@@ -70,13 +96,54 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void gridHandler(index) {
-    if (categoriesList[index] == "Solar panels") {
-      Get.to(SolarFormPage());
-    } else if (categoriesList[index] == "Home decoration") {
-      _launchURL();
+  _launchURL_Home_repair() async {
+    var url = Uri.parse("https://berlinrealtor.de/service/renovation/");
+    if (await canLaunchUrl(url)) {
+      // ignore: deprecated_member_use
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
     }
   }
+
+  _launchURL_recycling() async {
+    var url = Uri.parse("https://spicandspan.de/blog/recycling-in-germany-guide");
+    if (await canLaunchUrl(url)) {
+      // ignore: deprecated_member_use
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  _launchURL_car() async {
+    var url = Uri.parse("https://www.share-now.com/de/en/rent-electric-cars/");
+    if (await canLaunchUrl(url)) {
+      // ignore: deprecated_member_use
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  _launchURL_other() async {
+    var url = Uri.parse("https://www.greenpicks.de/en/inspirations/made-in-germany/");
+    if (await canLaunchUrl(url)) {
+      // ignore: deprecated_member_use
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+
+  // void gridHandler(index) {
+  //   if (categoriesList[index] == "Solar panels") {
+  //     Get.to(SolarFormPage());
+  //   } else if (categoriesList[index] == "Home decoration") {
+  //     _launchURL();
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
