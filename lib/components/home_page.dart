@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:homeowner_hub/api/api.dart';
+import 'package:homeowner_hub/components/browser_page.dart';
 import 'package:homeowner_hub/components/solar_form_page.dart';
 
 import 'package:homeowner_hub/const/const.dart';
@@ -259,7 +260,8 @@ class _HomePageState extends State<HomePage> {
                                       8, 6, 8, 6),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -271,6 +273,29 @@ class _HomePageState extends State<HomePage> {
                                             fontWeight: FontWeight.bold,
                                             fontSize: 16,
                                           )),
+                                      Container(
+                                          height: 30,
+                                          padding: EdgeInsets.only(right: 0),
+                                          child: OutlinedButton(
+                                              style: ButtonStyle(
+                                                  padding:
+                                                      MaterialStateProperty.all(
+                                                          EdgeInsets.only(
+                                                              right: 10))),
+                                              onPressed: () {
+                                                Get.to(() => BrowserPage(
+                                                    initalUrl: data[index]
+                                                        ["link"],
+                                                    title: data[index]
+                                                        ["title"]));
+                                              },
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Icon(Icons.navigate_next),
+                                                  Text("Read More")
+                                                ],
+                                              )))
                                     ],
                                   ),
                                 ),
@@ -368,7 +393,7 @@ class _HomePageState extends State<HomePage> {
                               Container(
                                 padding: EdgeInsets.all(8),
                                 child: Text(
-                                  "${EnergyUsageUtil.avgCostPerDay.toString().substring(0, 3)}",
+                                  "${EnergyUsageUtil.avgCostPerDay.toStringAsFixed(2)}",
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.normal,

@@ -83,17 +83,22 @@ class BrowserPageState extends State<BrowserPage> {
                       Navigator.of(context).pop();
                     },
                     icon: Icon(Icons.arrow_back_ios),
-                    color: Colors.black12,
+                    color: Colors.white,
                   ),
                 ),
               ),
               Align(
                   alignment: Alignment.center,
                   child: Container(
+                      width: Get.width * 0.8,
                       child: Text(
-                    widget.title,
-                    style: TextStyle(fontSize: titleSize, color: Colors.black),
-                  )))
+                        widget.title,
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontSize: titleSize,
+                            color: Colors.black,
+                            overflow: TextOverflow.ellipsis),
+                      )))
             ],
           ),
         ),

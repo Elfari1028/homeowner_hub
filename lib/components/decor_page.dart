@@ -28,11 +28,11 @@ class _DecorPageState extends State<DecorPage> {
   @override
   void initState() {
     super.initState();
-    // refresh();
+    refresh();
   }
 
   void refresh() async {
-    var temp = await APICall.post("/packages/get_offers");
+    data = await APICall.post("/packages/get_offers");
     if (mounted) setState(() {});
   }
 

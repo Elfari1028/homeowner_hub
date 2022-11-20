@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:homeowner_hub/utils/usage_cal.dart';
 
 class APICall {
-  static const String domain = "192.168.43.52:8000";
+  static const String domain = "192.168.43.176:8000";
   static Dio client = Dio(BaseOptions(
       baseUrl: "http://" + domain + '',
       connectTimeout: 5000,
