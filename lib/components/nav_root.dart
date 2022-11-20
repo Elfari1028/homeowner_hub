@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:homeowner_hub/components/decor_page.dart';
 import 'package:homeowner_hub/components/energy_page.dart';
 import 'package:homeowner_hub/components/home_page.dart';
 import 'package:homeowner_hub/components/service_page.dart';
@@ -51,25 +52,25 @@ class NavRootPage extends StatelessWidget {
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
         title: "Home",
-        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: Colors.lightGreen,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.electric_bolt),
         title: "Energy",
-        activeColorPrimary: CupertinoColors.activeGreen,
+        activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home_repair_service),
         title: "Services",
-        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: CupertinoColors.activeOrange,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.settings),
-        title: "Profile",
-        activeColorPrimary: CupertinoColors.activeOrange,
+        icon: Icon(CupertinoIcons.paintbrush_fill),
+        title: "DecorPlan",
+        activeColorPrimary: CupertinoColors.activeGreen,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
     ];
@@ -84,7 +85,7 @@ class NavRootPage extends StatelessWidget {
       EnergyMainPage(),
       Services(),
       // Profile(),
-      SolarFormPage(),
+      DecorPage(),
     ];
   }
 }

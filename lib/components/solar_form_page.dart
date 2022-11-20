@@ -15,6 +15,7 @@ class SolarFormPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NewGradientAppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         gradient: solarGradient,
         title: Row(children: [
@@ -23,7 +24,7 @@ class SolarFormPage extends StatelessWidget {
                 Get.back();
               },
               icon: const Icon(Icons.close)),
-          const Text("Get a quote for affordable Solar Panels",
+          const Text("Affordable Solar Panels",
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -125,8 +126,11 @@ Are you interested in more details? Please fill the form below and we will conta
                             (states) => BorderSide.none),
                         backgroundColor:
                             MaterialStateProperty.all(Colors.transparent)),
-                    onPressed: () {
+                    onPressed: () async {
                       Get.back();
+                      Get.snackbar("Submitted Successfully",
+                          "We'll be in contact with you shortly",
+                          backgroundColor: Colors.orange.shade700);
                     },
                     child: Text(
                       'Submit',

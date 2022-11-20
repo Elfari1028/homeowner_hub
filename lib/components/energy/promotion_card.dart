@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homeowner_hub/components/browser_page.dart';
 import 'package:homeowner_hub/components/solar_form_page.dart';
+import 'package:homeowner_hub/utils/usage_cal.dart';
 
 class SolarPromotionCard extends StatelessWidget {
   bool isBanner;
@@ -33,7 +34,8 @@ class SolarPromotionCard extends StatelessWidget {
             children: [
               Padding(
                   padding: EdgeInsets.only(left: 15, top: 10),
-                  child: Text("Save upto 12€ per month*",
+                  child: Text(
+                      "Save upto ${EnergyUsageUtil.moneySaved}€ per month*",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 22,
