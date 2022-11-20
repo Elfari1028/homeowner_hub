@@ -73,12 +73,13 @@ class _AddUsageState extends State<AddUsagePage> {
             onPressed: () async {
               DateTime? result = await showDatePicker(
                   context: context,
-                  initialDate: DateTime.now(),
+                  initialDate: DateTime.parse(data["D"]),
                   firstDate: DateTime.now().subtract(Duration(hours: 24 * 31)),
                   lastDate: DateTime.now().add(Duration(hours: 24)));
               if (result != null) {
                 data["D"] = result.toString().substring(0, 10);
               }
+              setState(() {});
             },
             child: Container(child: Text(data["D"])),
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homeowner_hub/api/api.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:simple_speed_dial/simple_speed_dial.dart';
 
 class DecorPage extends StatefulWidget {
   const DecorPage({Key? key}) : super(key: key);
@@ -36,9 +37,28 @@ class _DecorPageState extends State<DecorPage> {
     if (mounted) setState(() {});
   }
 
+  Widget get fabv => SpeedDial(
+        closedForegroundColor: Colors.black,
+        openForegroundColor: Colors.white,
+        closedBackgroundColor: Colors.white,
+        openBackgroundColor: Colors.black,
+        labelsBackgroundColor: Colors.white,
+        speedDialChildren: <SpeedDialChild>[
+          SpeedDialChild(
+            child: Icon(Icons.call),
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.blue,
+            label: 'Call us at +49 162 0000 123',
+            onPressed: () async {},
+            closeSpeedDialOnPressed: false,
+          ),
+        ],
+        child: const Icon(Icons.call),
+      );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: fabv,
         appBar: NewGradientAppBar(
           gradient: LinearGradient(
               colors: [Color(0xFF84fab0), Color(0xFF8fd3f4)],

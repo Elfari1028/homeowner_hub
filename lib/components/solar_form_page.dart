@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:homeowner_hub/api/api.dart';
 import 'package:homeowner_hub/components/energy/promotion_card.dart';
 import 'package:homeowner_hub/main.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
@@ -11,6 +12,17 @@ const solarGradient = LinearGradient(
     end: Alignment.centerRight);
 
 class SolarFormPage extends StatelessWidget {
+  Map<String, dynamic> data = {
+    "username": "",
+    "email": "",
+    "phone_num": "",
+    "postcode": "",
+  };
+
+  submit() async {
+    APICall.post("/contacs/register_user_for_call", data: data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +76,8 @@ Are you interested in more details? Please fill the form below and we will conta
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-              child: const TextField(
+              child: TextField(
+                onChanged: ((value) => data["username"] = value),
                 decoration: InputDecoration(
                   hintText: "Name",
                   labelText: "Name",
@@ -74,7 +87,8 @@ Are you interested in more details? Please fill the form below and we will conta
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-              child: const TextField(
+              child: TextField(
+                onChanged: ((value) => data["phone_num"] = value),
                 decoration: InputDecoration(
                   hintText: "Phone Number",
                   labelText: "Phone Number",
@@ -84,7 +98,8 @@ Are you interested in more details? Please fill the form below and we will conta
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-              child: const TextField(
+              child: TextField(
+                onChanged: ((value) => data["email"] = value),
                 decoration: InputDecoration(
                   hintText: "Email",
                   labelText: "Email",
@@ -94,7 +109,8 @@ Are you interested in more details? Please fill the form below and we will conta
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-              child: const TextField(
+              child: TextField(
+                onChanged: ((value) => data["postcode"] = value),
                 decoration: InputDecoration(
                   hintText: "Postal code",
                   labelText: "Postal Code",
@@ -127,6 +143,7 @@ Are you interested in more details? Please fill the form below and we will conta
                         backgroundColor:
                             MaterialStateProperty.all(Colors.transparent)),
                     onPressed: () async {
+                      submit();
                       Get.back();
                       Get.snackbar("Submitted Successfully",
                           "We'll be in contact with you shortly",

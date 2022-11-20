@@ -78,13 +78,9 @@ class NavRootPage extends StatelessWidget {
 
   List<Widget> _buildScreens() {
     return [
-      // HomeWidget(),
-      HomePage(
-        title: 'first',
-      ),
+      HomePage(),
       EnergyMainPage(),
       Services(),
-      // Profile(),
       DecorPage(),
     ];
   }

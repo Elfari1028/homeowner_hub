@@ -13,7 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 // "www.google.com"
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
+  const HomePage({super.key});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -24,7 +24,6 @@ class HomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -60,34 +59,25 @@ class _HomePageState extends State<HomePage> {
     callApi();
   }
 
-     void gridHandler(index) {
+  void gridHandler(index) {
     if (categoriesList[index] == "Solar panels") {
       Get.to(SolarFormPage());
     } else if (categoriesList[index] == "Home decoration") {
       _launchURL_Home_decoration();
-    }
-
-    else if (categoriesList[index] == "Home repair") {
+    } else if (categoriesList[index] == "Home repair") {
       _launchURL_Home_repair();
-    }
-    
-     else if (categoriesList[index] == "Recycling") {
+    } else if (categoriesList[index] == "Recycling") {
       _launchURL_recycling();
-    }
-    
- else if (categoriesList[index] == "Rent electric car") {
+    } else if (categoriesList[index] == "Rent electric car") {
       _launchURL_car();
-    }
-    
- else if (categoriesList[index] == "Other services") {
+    } else if (categoriesList[index] == "Other services") {
       _launchURL_other();
     }
-    
-
   }
 
-    _launchURL_Home_decoration() async {
-    var url = Uri.parse("https://www.blauer-engel.de/en/themenwelt/umweltfreundliches-buero");
+  _launchURL_Home_decoration() async {
+    var url = Uri.parse(
+        "https://www.blauer-engel.de/en/themenwelt/umweltfreundliches-buero");
     if (await canLaunchUrl(url)) {
       // ignore: deprecated_member_use
       await launchUrl(url);
@@ -107,7 +97,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   _launchURL_recycling() async {
-    var url = Uri.parse("https://spicandspan.de/blog/recycling-in-germany-guide");
+    var url =
+        Uri.parse("https://spicandspan.de/blog/recycling-in-germany-guide");
     if (await canLaunchUrl(url)) {
       // ignore: deprecated_member_use
       await launchUrl(url);
@@ -127,7 +118,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   _launchURL_other() async {
-    var url = Uri.parse("https://www.greenpicks.de/en/inspirations/made-in-germany/");
+    var url =
+        Uri.parse("https://www.greenpicks.de/en/inspirations/made-in-germany/");
     if (await canLaunchUrl(url)) {
       // ignore: deprecated_member_use
       await launchUrl(url);
@@ -135,7 +127,6 @@ class _HomePageState extends State<HomePage> {
       throw 'Could not launch $url';
     }
   }
-
 
   // void gridHandler(index) {
   //   if (categoriesList[index] == "Solar panels") {
@@ -166,6 +157,7 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               width: 60,
               height: 60,
+              alignment: Alignment.center,
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -191,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                 child: Container(
                   padding: EdgeInsets.only(bottom: 12, left: 6),
-                  child: Text('Our Services: ',
+                  child: Text('Service Shortcuts: ',
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -229,16 +221,20 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Container(
-                          padding: const EdgeInsets.only(top: 2.0),
+                          padding: const EdgeInsets.only(top: 5.0),
+                          alignment: Alignment.center,
                           child: Column(
-                            mainAxisSize: MainAxisSize.min,
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                height: (Get.height) * 0.1,
+                                width: (Get.width) * 0.18,
+                                alignment: Alignment.center,
                                 child: Container(
+                                    alignment: Alignment.center,
                                     child: Image.asset(
-                                  categoriesListIcons[index],
-                                )
+                                      categoriesListIcons[index],
+                                    )
                                     // ),
                                     ),
                               ),
@@ -343,26 +339,41 @@ class _HomePageState extends State<HomePage> {
                                       Container(
                                           height: 30,
                                           padding: EdgeInsets.only(right: 0),
-                                          child: OutlinedButton(
-                                              style: ButtonStyle(
-                                                  padding:
-                                                      MaterialStateProperty.all(
-                                                          EdgeInsets.only(
-                                                              right: 10))),
-                                              onPressed: () {
-                                                Get.to(() => BrowserPage(
-                                                    initalUrl: data[index]
-                                                        ["link"],
-                                                    title: data[index]
-                                                        ["title"]));
-                                              },
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Icon(Icons.navigate_next),
-                                                  Text("Read More")
-                                                ],
-                                              )))
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              OutlinedButton(
+                                                  style: ButtonStyle(
+                                                      padding:
+                                                          MaterialStateProperty
+                                                              .all(EdgeInsets
+                                                                  .only(
+                                                                      right:
+                                                                          10))),
+                                                  onPressed: () {
+                                                    Get.to(() => BrowserPage(
+                                                        initalUrl: data[index]
+                                                            ["link"],
+                                                        title: data[index]
+                                                            ["title"]));
+                                                  },
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Icon(Icons.navigate_next),
+                                                      Text("Read More"),
+                                                    ],
+                                                  )),
+                                              Text(
+                                                data[index]["date"],
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.grey),
+                                              )
+                                            ],
+                                          ))
                                     ],
                                   ),
                                 ),

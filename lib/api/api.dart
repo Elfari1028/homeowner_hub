@@ -9,9 +9,10 @@ class APICall {
       receiveTimeout: 3000,
       extra: {'withCredentials': true}));
 
-  static Future<dynamic> post(url, {Map? data}) async {
+  static Future<dynamic> post(url, {Map<String, dynamic>? data}) async {
     try {
-      Response response = await client.post(url, data: data);
+      Response response =
+          await client.post(url, data: data, queryParameters: data);
       return response.data;
     } on DioError catch (e) {
       return Map.from({"success": false, "exc": e.type.toString()});
@@ -39,7 +40,7 @@ class APICall {
 
   static getSaveNum() async {
     Map? results =
-        await post("/savings/show_prices", data: {"period": "month"});
+        await get("/savings/show_prices", query: {"period": "month"});
     // "money_saved" "normal_bill" "eco_bill"
     EnergyUsageUtil.moneySaved = results?["money_saved"] ?? 12;
   }

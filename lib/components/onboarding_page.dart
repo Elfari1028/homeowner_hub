@@ -12,13 +12,13 @@ class OnboardingPage extends StatelessWidget {
   List<PageViewModel> getPages() {
     return [
       PageViewModel(
-          // image :Image.asset("assets/images/signup.png"),
           titleWidget: Column(
             children: <Widget>[
               Container(height: 30),
               Image.asset("assets/onboarding1.png"),
               Container(height: 30),
               Text("Never miss an opportunity to save energy",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       color: const Color(0xD8172221),
                       fontWeight: FontWeight.bold,
@@ -37,33 +37,22 @@ class OnboardingPage extends StatelessWidget {
               ),
             ],
           ),
-
-          // footer: Text("Easily find a question to answer, chat, and collaborate on the go. "),
           decoration: const PageDecoration(
             pageColor: const Color(0xffE7E7E9),
-            // const Color(0xFFF2F2F3),
           )),
       PageViewModel(
           image: Image.asset("assets/onboarding2.png"),
           title: "Save money on the go",
           body:
               "Obtain advice from our professionals on affordable green energy solutions",
-          // footer: Text("Footer Text  here "),
           decoration: const PageDecoration(
             pageColor: const Color(0xFFF2F2F3),
           )),
       PageViewModel(
           image: Image.asset("assets/onboarding3.png"),
-          // titleWidget: Text(
-          title: "Welcome.",
-          //   style: TextStyle(
-          //       color: const Color(0xD8172221),
-          //       fontWeight: FontWeight.bold,
-
-          //       fontSize: 16),
-          // ),
+          title:
+              "Find and utilize environmentally friendly services in Germany!",
           body: "Join us in the pursuit of the ideal place to call home.",
-          // footer: Text("Footer Text  here "),
           decoration: const PageDecoration(
             pageColor: const Color(0xFFF2F2F3),
           )),
@@ -72,13 +61,7 @@ class OnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Instance to know the authentication state.
-
-    //The user isn't logged in and hence navigate to SignInPage.
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Introduction Screen"),
-      // ),
       body: IntroductionScreen(
         globalBackgroundColor: Colors.blue[100],
         pages: getPages(),

@@ -140,16 +140,6 @@ class EnergyMainPageState extends State<EnergyMainPage> {
                         color: Colors.white),
                   ),
                 ),
-                // Padding(
-                //   padding: EdgeInsets.only(left: 10, bottom: 5),
-                //   child: Text(
-                //     "Per Month",
-                //     style: TextStyle(
-                //         fontSize: 16,
-                //         fontWeight: FontWeight.bold,
-                //         color: Colors.white),
-                //   ),
-                // )
               ],
             ),
             Container(
@@ -161,12 +151,6 @@ class EnergyMainPageState extends State<EnergyMainPage> {
                   "avergaing \$ ${EnergyUsageUtil.avgCostPerDay.toStringAsFixed(2)} per day",
                   style: TextStyle(color: Colors.white),
                 ),
-                // Row(
-                //   children: [
-                //     Text("You're below average use today",
-                //         style: TextStyle(color: Colors.white)),
-                //   ],
-                // ),
               ],
             ))
           ],

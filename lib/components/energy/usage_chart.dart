@@ -92,8 +92,8 @@ class _LineChartUsageState extends State<LineChartUsage> {
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       color: Color(0xff68737d),
-      fontWeight: FontWeight.bold,
-      fontSize: 16,
+      fontWeight: FontWeight.normal,
+      fontSize: 13,
     );
     DateTime date =
         DateTime.now().subtract(Duration(hours: 24 * (14 - value.toInt())));
@@ -108,8 +108,8 @@ class _LineChartUsageState extends State<LineChartUsage> {
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       color: Color(0xff67727d),
-      fontWeight: FontWeight.bold,
-      fontSize: 15,
+      fontWeight: FontWeight.normal,
+      fontSize: 13,
     );
     String text;
     text = "${value.toInt()}${widget.unit}";
@@ -149,14 +149,14 @@ class _LineChartUsageState extends State<LineChartUsage> {
           sideTitles: SideTitles(
             showTitles: true,
             reservedSize: 30,
-            interval: 1,
+            interval: 2,
             getTitlesWidget: bottomTitleWidgets,
           ),
         ),
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-            interval: 1,
+            interval: maxY / 7,
             getTitlesWidget: leftTitleWidgets,
             reservedSize: 42,
           ),
@@ -223,7 +223,7 @@ class _LineChartUsageState extends State<LineChartUsage> {
             showTitles: true,
             reservedSize: 30,
             getTitlesWidget: bottomTitleWidgets,
-            interval: 1,
+            interval: 2,
           ),
         ),
         leftTitles: AxisTitles(
@@ -231,7 +231,7 @@ class _LineChartUsageState extends State<LineChartUsage> {
             showTitles: true,
             getTitlesWidget: leftTitleWidgets,
             reservedSize: 42,
-            interval: 1,
+            interval: maxY / 7,
           ),
         ),
         topTitles: AxisTitles(
